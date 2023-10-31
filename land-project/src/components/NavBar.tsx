@@ -12,18 +12,20 @@ import {
 } from "@chakra-ui/react";
 import useCustomColors from "../hooks/useCustomColors";
 import ColorModeSwitch from "./ColorModeSwitch";
+import { useNavigate } from "react-router-dom";
 
 const links = [
-  { id: 1, name: "Discover" },
-  { id: 2, name: "Find" },
-  { id: 3, name: "Pricing" },
-  { id: 4, name: "About Us" },
-  { id: 5, name: "Contact" },
+  { id: 1, name: "Discover", path: '/' },
+  { id: 2, name: "Find", path: '/search' },
+  { id: 3, name: "Pricing", path: 'pricing' },
+  { id: 4, name: "About Us", path: 'about-us' },
+  { id: 5, name: "Contact", path: 'contact' },
 ];
 
 const NavBar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { navBackground } = useCustomColors();
+  const navigate = useNavigate()
   return (
     <>
       <Box marginY={7}>
@@ -61,6 +63,7 @@ const NavBar = () => {
                     </Link>
                   ) : (
                     <Link
+                    onClick={() => navigate(link.path)}
                       px={2}
                       py={1}
                       _hover={{
@@ -98,6 +101,9 @@ const NavBar = () => {
                     }}
                     href={"#"}
                     key={link.id}
+                    onClick={() => {
+                      onClose()
+                      navigate(link.path)}}
                   >
                     {link.name}
                   </Box>
@@ -107,6 +113,7 @@ const NavBar = () => {
           ) : null}
         </Container>
         <hr />
+        
       </Box>
     </>
   );

@@ -9,8 +9,10 @@ import {
     VStack,
   } from "@chakra-ui/react";
   import home1 from "../../assets/Image (1).png";
+import { useNavigate } from "react-router-dom";
   
   const HomePageOne = () => {
+    const navigate = useNavigate()
     return (
       <Container minWidth={"80vw"} marginTop={'6rem'}>
         <Box
@@ -37,7 +39,7 @@ import {
               <Text mb={8} fontSize={{xl: "20px", lg: '16px'}}>Explore available plots in Ghana</Text>
             </Box>
             <HStack>
-              <Button colorScheme="whatsapp" borderRadius={0}>
+              <Button colorScheme="whatsapp" onClick={() => navigate('/search')} borderRadius={0}>
                 Search now
               </Button>
               <Button>View details</Button>
